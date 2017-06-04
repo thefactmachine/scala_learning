@@ -21,4 +21,28 @@ A += ('Z' -> 12)
 
 ```
 
+## Consolidated Map Example Code
+```
+// one way of declaring a map
+var mapAge:Map[String, Int] = Map()
+mapAge = Map("mark" -> 30, "susan" -> 35, "fred" -> 5)
 
+// another way of declaring a Map
+var mapAgeA = Map("fred" -> 23, "michelle" -> 13)
+ 
+ // adding an element to an array
+mapAge += ("newbie" -> 45)
+ 
+// concatenate two maps (method 1)
+var mapBigMap = mapAge ++ mapAgeA
+
+// concatenate two maps (method 2)
+var mapBigMapA = mapAge.++(mapAgeA)
+ 
+// iterate through a map
+mapAge.keys.foreach{n => println(n + " " + mapAge(n))}
+
+// using contains
+println("this should be true " + mapAge.contains("mark"))
+
+```

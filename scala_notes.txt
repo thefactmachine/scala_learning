@@ -1,0 +1,418 @@
+https://scalafiddle.io/
+ 
+print and println
+ 
+https://scalafiddle.io/sf/NC6lmNZ/0
+ 
+ 
+A + = ('L' -> 100)
+ 
+ 
+ 
+// Start writing your ScalaFiddle code here
+ 
+ 
+//
+ 
+println("hi there")
+ 
+ 
+ 
+// one way of declaring a map
+ 
+ 
+var mapAge:Map[String, Int] = Map()
+ 
+ 
+mapAge = Map("mark" -> 30, "susan" -> 35, "fred" -> 5)
+ 
+ 
+ 
+// another way of declaring a Map
+ 
+ 
+var mapAgeA = Map("fred" -> 23, "michelle" -> 13)
+ 
+ 
+ 
+// adding an element to an array
+mapAge += ("newbie" -> 45)
+ 
+ 
+ 
+// concatenate two maps (method 1)
+ 
+ 
+var mapBigMap = mapAge ++ mapAgeA
+ 
+ 
+ 
+// concatenate two maps (method 2)
+ 
+ 
+var mapBigMapA = mapAge.++(mapAgeA)
+ 
+ 
+ 
+// print keys and values
+ 
+ 
+mapAge.keys.foreach{n => println(n + " " + mapAge(n))}
+ 
+ 
+ 
+println("this should be true " + mapAge.contains("mark"))
+ 
+ 
+=========TUPLE===========================================
+https://scalafiddle.io/sf/3xcCjMP/0
+ 
+Unlike an array or list, a tuple can hold objects with different type.
+But they are immutable.
+ 
+There is an upper limit on the number of elements in a tuple this is 22.
+ 
+Iterate over the Tuple with Tuple.productIterator()
+new
+ 
+=======
+ 
+// Start writing your ScalaFiddle code here
+ 
+ 
+ 
+// easy way of declaring a tuple
+ 
+ 
+val test_tuple = (1, "hello", Console)
+ 
+ 
+ 
+// another way...you actually need to put the 3 in here
+ 
+ 
+val new_tuple = new Tuple3(1, "hello", 54)
+ 
+ 
+ 
+println(new_tuple)
+ 
+ 
+ 
+ 
+// how to access an element --- 1 based
+ 
+ 
+println(new_tuple._2)
+ 
+ 
+ 
+new_tuple.productIterator.foreach{ i => println(i)}
+ 
+ 
+ 
+// convert everything to a string...this doesnot work
+ 
+ 
+ 
+println(new_tuple.toString())
+ 
+ 
+ 
+ 
+===============Option=========================
+ 
+https://scalafiddle.io/sf/8liN1mP/0
+ 
+ 
+ 
+Scala Option[T] is a container for zero or one elements of a given type.
+ 
+This can either be Some[T] or None object. 
+ 
+ 
+getOrElse() Method...
+This is used to get a default value when the actual value is None
+ 
+ 
+===============Iterators=======================
+https://scalafiddle.io/sf/V4VG8gM/0
+ 
+An iterator is not a collection but a way t access the elements of a collection
+one by one.  The wo basic operation on an iterator are **next** and **hasNext**
+ 
+An iterator can be traversed only once.
+ 
+=================TRAITS========================
+A trait definition looks just like a class definition except that it uses the keyword trait.  Unlike class
+inheritance, in which each class must inherit from just one superclass, a class can mix in any number of
+traits.
+ 
+trait Equal {
+   def isEqual(x: Any): Boolean
+   def isNotEqual(x: Any): Boolean = !isEqual(x)
+}
+ 
+In the aove, isEqual() has not been given any implementation.  Child classes extending a trait can give
+implementation for the un-implemented methods.
+ 
+ 
+ 
+# ==== need to write a bit more here =============================
+ 
+=================Pattern Matching ==================================
+This is the second most widely used feature of Scala, after functon values and closures.
+ 
+A pattern match includes a sequence of alternatives each starting with the keyword case.
+Each alternative includes a pattern and one or more expressions, which will be evaluated if the pattern
+matches.  An arrow symbol => separates the pattern from the expressionns.
+ 
+Here is an example:
+ 
+object Demo {
+   def main(args: Array[String]) {
+      println(matchTest("two"))
+      println(matchTest("test"))
+      println(matchTest(1))
+   }
+  
+   def matchTest(x: Any): Any = x match {
+      case 1 => "one"
+      case "two" => 2
+      case y: Int => "scala.Int"
+      case _ => "many"
+   }
+}
+ 
+Output
+ 
+2
+many
+one
+ 
+=================Case Classes===================================
+ 
+The **case classes** are special classes that are used in pattern matching with case expressions.
+Syntactically, these are standard classes with a special modifier case.
+ 
+This is shown in the following code:
+ 
+case class Person(name: String, age:Int)
+ 
+object Demo {
+   def main(args: Array[String]) {
+      val alice = new Person("Alice", 25)
+      val bob = new Person("Bob", 32)
+      val charlie = new Person("Charlie", 32)
+  
+      for (person <- List(alice, bob, charlie)) {
+         person match {
+            case Person("Alice", 25) => println("Hi Alice!")
+            case Person("Bob", 32) => println("Hi Bob!")
+            case Person(name, age) => println(
+               "Age: " + age + " year, name: " + name + "?")
+         }
+      }
+   }
+   case class Person(name: String, age: Int)
+}
+ 
+===================================================================
+ 
+The Regex class is available in the scala.util.matching package.
+ 
+This gets imported as:
+ 
+import scala.util.matching.Regex
+ 
+This then gets implemented as:
+ 
+val pattern = "Scala".r
+val str = "Scala is Scalable and cool"
+println(pattern findFirstIn str)
+ 
+The above will then print out:
+ 
+Some(Scala)
+ 
+We create a String and call the r() method on it. 
+ 
+If we wanted to find all occurences of the maching work, we can use the findAllIn()
+ 
+The mkString() method below will concatenate the resulting list.
+ 
+ 
+import scala.util.matching.Regex
+ 
+object Demo {
+   def main(args: Array[String]) {
+      val pattern = new Regex("(S|s)cala")
+      val str = "Scala is scalable and cool"
+     
+      println((pattern findAllIn str).mkString(","))
+   }
+}
+ 
+Replacing an item:
+ 
+The following replaces "Scala" with "Java"
+ 
+object Demo {
+   def main(args: Array[String]) {
+      val pattern = "(S|s)cala".r
+      val str = "Scala is scalable and cool"
+     
+      println(pattern replaceFirstIn(str, "Java"))
+   }
+}
+ 
+===================Exception Handling===============================
+The following example does it all:
+ 
+import java.io.FileReader
+import java.io.FileNotFoundException
+import java.io.IOException
+ 
+object Demo {
+   def main(args: Array[String]) {
+      try {
+         val f = new FileReader("input.txt")
+      } catch {
+         case ex: FileNotFoundException => {
+            println("Missing file exception")
+         }
+        
+         case ex: IOException => {
+            println("IO Exception")
+         }
+      } finally {
+         println("Exiting finally...")
+      }
+   }
+}
+ 
+===================Extractors===============================
+To do later.....
+ 
+============================================================
+ 
+==================Files IO==================================
+ 
+ 
+ 
+============================================================
+ 
+
+ 
+==============================================================
+ 
+=============functions==with===variable====arguments==========
+Allows us to pass variable length argument lists....
+ 
+"String*" is actually Array[String]
+ 
+ 
+// function signature=====
+def printStrings( args:String* ) = {  }
+ 
+// call the function
+printStrings("Hello", "Scala", "Python");
+
+
+ 
+==============================================================
+ 
+====Default Parameter Values ================================
+This is easy enough:
+ 
+def addInt( a:Int = 5, b:Int = 7 ) : Int = {
+                var sum:Int = 0
+                sum = a + b
+                return sum
+}
+ 
+ 
+==============================================================
+ 
+ 
+=============================================================
+ 
+============ => operator ================================
+ 
+"LEFT=> RIGHT"
+ 
+Means that if you have a "()=>"  This means that if you have a
+"()=>" that you take nothing (ie. no paramters and then do whatever is
+on the right-hand hand side...."
+ 
+ 
+============================================================
+ 
+=
+
+
+
+
+
+
+==============================================================
+ 
+=====RECURSIOn===========================================
+// Easy enough...
+ 
+def factorial(n: BigInt): BigInt = { 
+                if (n <= 1)
+                1 
+      else   
+                n * factorial(n - 1)
+}
+ 
+// call it
+ 
+factorial(3)
+ 
+// this prints 3 * 2 * 1 = 6
+ 
+============================================================
+ 
+==== Higher Order Functions ==============================
+ 
+Higher order functions:
+ 
+1) take other functions as parameters
+ 
+2) return functions
+ 
+http://danielwestheide.com/blog/2013/01/23/the-neophytes-guide-to-scala-part-10-staying-dry-with-higher-order-functions.html
+ 
+ 
+ 
+
+=====================================================
+ 
+ 
+ 
+ 
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+Mark Hatcher
+Data Science Research and Innovation
+Intelligence Development | Intelligence Division
+Department of Immigration and Border Protection
+Mobile: 0405 663 077
+Email: mark.hatcher1@border.gov.au
+ 
+
+
+Important Notice: The content of this email is intended only for use by the individual or entity to whom it is addressed. If you have received this email by mistake, please advise the sender and delete the message and attachments immediately.  This email, including attachments, may contain confidential, sensitive, legally privileged and/or copyright information.  
+
+Any review, retransmission, dissemination or other use of this information by persons or entities other than the intended recipient is prohibited.  DIBP respects your privacy and has obligations under the Privacy Act 1988.  
+
+Unsolicited commercial emails MUST NOT be sent to the originator of this email.

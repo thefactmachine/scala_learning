@@ -27,7 +27,7 @@ Logger.getLogger("org").setLevel(Level.ERROR)
 
 // Load each line of the source data into an RDD
 // if a relative path is to be included, then it needs to be set from the spark context.
-val lines = sc.textFile("/Users/markhatcher/transferred_from_5_tb_disk/scala_learning/spark_a/fakefriends.csv")
+val lines = sc.textFile("/Users/zurich/Documents/scala_learning/spark_a/fakefriends.csv")
 
 // can use the following... this is equal to 500
 println("number of lines " + lines.count)

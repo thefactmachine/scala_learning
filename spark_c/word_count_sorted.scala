@@ -11,7 +11,8 @@ Logger.getLogger("org").setLevel(Level.ERROR)
 // Load each line of my book into an RDD
 // The line is actually a paragraph.
 // input.count == 926
-val input = sc.textFile("/Users/markhatcher/transferred_from_5_tb_disk/scala_learning/spark_c/book.txt")
+
+val input = sc.textFile("/Users/zurich/Documents/scala_learning/spark_c/book.txt")
 
 // Split using a regular expression that extracts words
 // words.count == 47801

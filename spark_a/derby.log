@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Sun Jun 04 19:57:19 AEST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015c-7289-9b1b-00002d7fec68 
-on database directory /Users/markhatcher/transferred_from_5_tb_disk/scala_learning/a_spark/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@7ac48e10 
+Sat Jun 10 14:50:29 AEST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015c-9056-d625-000020036120 
+on database directory /Users/zurich/Documents/scala_learning/spark_a/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@4270b142 
 Loaded from file:/usr/local/Cellar/apache-spark/2.1.1/libexec/jars/derby-10.12.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_131-b11
-user.dir=/Users/markhatcher/transferred_from_5_tb_disk/scala_learning/a_spark
+java.runtime.version=1.8.0_45-b14
+user.dir=/Users/zurich/Documents/scala_learning/spark_a
 os.name=Mac OS X
 os.arch=x86_64
 os.version=10.12

@@ -22,7 +22,7 @@ Logger.getLogger("org").setLevel(Level.ERROR)
     
 
 // Load up each line of the ratings data into an RDD
-val lines = sc.textFile("/Users/markhatcher/transferred_from_5_tb_disk/scala_learning/a_spark/u.data")
+val lines = sc.textFile("/Users/zurich/Documents/scala_learning/spark_a/u.data")
 lines.count == 100000
 
 
@@ -44,5 +44,3 @@ val sortedResults = results.toSeq.sortBy(_._1)
 
 // Print each result on its own line.
 sortedResults.foreach(println)
-
-
